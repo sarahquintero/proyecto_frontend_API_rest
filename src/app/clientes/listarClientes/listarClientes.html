@@ -38,9 +38,7 @@
             <td class="text-start">{{ cliente.email }}</td>
             <td>{{ cliente.createAt }}</td>
             <td>
-              <button type="button" [routerLink]="['/clientes/form', cliente.id]" class="btn btn-warning btn-sm">
-                Editar
-              </button>
+              <button class="btn btn-warning" (click)="editar(cliente)">Editar</button>
             </td>
             <td>
               <button type="button" (click)="eliminar(cliente)" class="btn btn-danger btn-sm">

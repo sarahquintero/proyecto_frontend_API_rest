@@ -1,6 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { ClienteService } from '../servicios/cliente';
 import { Cliente } from '../modelos/cliente';
 import Swal from 'sweetalert2';
@@ -15,7 +15,10 @@ import Swal from 'sweetalert2';
 export class ClientesComponent implements OnInit {
   public clientes = signal<Cliente[]>([]);
 
-  constructor(private clienteService: ClienteService) { }
+  constructor(
+    private clienteService: ClienteService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.clienteService.getClientes().subscribe(
@@ -25,7 +28,10 @@ export class ClientesComponent implements OnInit {
     );
   }
 
-  // Ejemplo de método para eliminar cliente usando Swal con confirmación
+  public editar(cliente: Cliente): void {
+    this.router.navigate(['/cliente/editarClientes', cliente.id]);
+  }
+
   public eliminar(cliente: Cliente): void {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -38,13 +44,10 @@ export class ClientesComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Lógica para llamar al servicio y eliminar
-
         this.clienteService.delete(cliente.id).subscribe(() => {
           this.clientes.set(this.clientes().filter(c => c.id !== cliente.id));
           Swal.fire('Eliminado!', 'El cliente ha sido eliminado.', 'success');
         });
-
       }
     });
   }
