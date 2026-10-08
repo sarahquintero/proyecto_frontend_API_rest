@@ -1,0 +1,12 @@
+.header-container {
+  background-color: #5b8ec9; /* Azul medio de la imagen */
+}
+
+.social-icons a {
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.social-icons a:hover {
+  opacity: 0.8;
+}

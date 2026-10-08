@@ -1,0 +1,57 @@
+<div class="my-3 text-start">
+  <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/cliente/crearClientes']">
+    Crear Cliente
+  </button>
+</div>
+
+<div class="card border-primary mb-3">
+  <div class="card-header bg-primary text-white font-weight-bold">Clientes</div>
+  <div class="card-body">
+    <h5 class="card-title text-dark mb-3">Listado de clientes</h5>
+
+    @if (clientes().length === 0) {
+    <div class="alert alert-info" role="alert">
+      No hay registros de clientes en la base de datos.
+    </div>
+    } @else {
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Fecha de Creación</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (cliente of clientes(); track cliente.id) {
+          <tr class="align-middle text-center">
+            <td>{{ cliente.id }}</td>
+            <td>{{ cliente.codigo }}</td>
+            <td class="text-start">{{ cliente.nombre }}</td>
+            <td class="text-start">{{ cliente.apellido }}</td>
+            <td class="text-start">{{ cliente.email }}</td>
+            <td>{{ cliente.createAt }}</td>
+            <td>
+              <button type="button" [routerLink]="['/clientes/form', cliente.id]" class="btn btn-warning btn-sm">
+                Editar
+              </button>
+            </td>
+            <td>
+              <button type="button" (click)="eliminar(cliente)" class="btn btn-danger btn-sm">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+  </div>
+</div>

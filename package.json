@@ -17,7 +17,9 @@
     "@angular/forms": "^22.1.0",
     "@angular/platform-browser": "^22.1.0",
     "@angular/router": "^22.1.0",
+    "@sweetalert2/ngx-sweetalert2": "^15.0.0",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.26.25",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -28,5 +30,8 @@
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
     "vitest": "^4.0.8"
+  },
+  "optionalDependencies": {
+    "@oxc-parser/binding-win32-x64-msvc": "^0.152.0"
   }
 }
